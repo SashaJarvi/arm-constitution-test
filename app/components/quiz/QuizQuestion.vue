@@ -1,6 +1,6 @@
 <template>
   <div v-if="question" class="quiz-question">
-    <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+    <h2 class="text-xl md:text-2xl font-bold text-dark-900 mb-8 leading-snug">
       {{ getTranslatedText(question.text) }}
     </h2>
     <QuizAnswers

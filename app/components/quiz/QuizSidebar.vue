@@ -1,22 +1,22 @@
 <template>
   <aside
     v-if="isVisible"
-    class="quiz-sidebar w-full md:w-64 bg-white rounded-lg shadow-md p-4 mb-6 md:mb-0"
+    class="quiz-sidebar w-full md:w-64 bg-white rounded-2xl shadow-md p-5 mb-6 md:mb-0"
   >
-    <h3 class="text-lg font-semibold text-gray-900 mb-4">
+    <h3 class="text-lg font-bold text-dark-900 mb-4">
       {{ t('quiz.questionList') }}
     </h3>
-    <div class="flex flex-wrap gap-1.5">
+    <div class="flex flex-wrap gap-2">
       <button
         v-for="(questionId, index) in questionOrder"
         :key="questionId"
         :class="[
-          'w-10 h-10 rounded-lg font-medium transition-all',
+          'w-11 h-11 rounded-xl font-semibold transition-all duration-150',
           index === currentQuestionIndex
-            ? 'bg-primary-600 text-white ring-2 ring-primary-300'
+            ? 'bg-primary-600 text-white ring-2 ring-primary-300 shadow-md'
             : isAnswered(questionId)
-              ? 'bg-success-100 text-success-700 hover:bg-success-200'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+              ? 'bg-success-100 text-success-700 hover:bg-success-200 hover:shadow-sm'
+              : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm',
         ]"
         @click="() => handleNavigate(index)"
       >
