@@ -27,6 +27,7 @@
     "@nuxt/eslint": "^1.12.1",
     "@unocss/reset": "^66.5.10",
     "eslint": "^9.39.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "unocss": "^66.5.10"
   }
 }

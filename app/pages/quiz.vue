@@ -4,7 +4,7 @@
       <!-- Header -->
       <header class="mb-8">
         <div class="flex flex-wrap justify-between items-center mb-6 gap-6">
-          <h1 class="text-2xl font-bold text-gray-900">
+          <h1 class="text-2xl md:text-3xl font-bold text-dark-900">
             {{ t('landing.title') }}
           </h1>
           <LanguageSwitcher />
@@ -28,10 +28,10 @@
       <!-- Pause Overlay -->
       <div
         v-if="quizState.isPaused"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm"
       >
-        <div class="bg-white rounded-lg p-8 text-center max-w-md">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+        <div class="bg-white rounded-3xl p-10 text-center max-w-md shadow-2xl mx-4">
+          <h2 class="text-3xl font-bold text-dark-900 mb-6">
             {{ t('quiz.pause') }}
           </h2>
           <BaseButton @click="quizStore.togglePause">
@@ -86,7 +86,7 @@ const {
   progress,
   isFirstQuestion,
   isLastQuestion,
-  canSubmit,
+  canSubmit
 } = storeToRefs(quizStore)
 
 // Sidebar visibility
@@ -101,7 +101,7 @@ const { data: questionsData } = await useFetch('/api/questions')
 if (!questionsData.value?.success) {
   throw createError({
     statusCode: 500,
-    message: 'Failed to load questions',
+    message: 'Failed to load questions'
   })
 }
 
@@ -147,7 +147,6 @@ onBeforeRouteLeave((to) => {
   if (quizState.value.isCompleted || to.path === '/results')
     return true
 
-  const confirmed = confirm(t('quiz.confirmLeave'))
-  return confirmed
+  return confirm(t('quiz.confirmLeave'))
 })
 </script>

@@ -1,16 +1,16 @@
 <template>
-  <div class="quiz-answers space-y-3">
+  <div class="quiz-answers space-y-4">
     <label
       v-for="answer in answers"
       :key="answer.id"
       :class="[
-        'block p-4 border-2 rounded-lg cursor-pointer transition-all',
+        'block p-5 border-2 rounded-2xl cursor-pointer transition-all duration-150',
         selectedAnswerId === answer.id
-          ? 'border-primary-600 bg-primary-50'
-          : 'border-gray-200 hover:border-primary-300 hover:bg-gray-50',
+          ? 'border-primary-600 bg-primary-50 shadow-md'
+          : 'border-gray-light-border hover:border-primary-400 hover:bg-gray-50 hover:shadow-sm',
       ]"
     >
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-4">
         <input
           type="radio"
           :name="radioName"
@@ -19,7 +19,7 @@
           class="input-radio"
           @change="() => handleSelect(answer.id)"
         >
-        <span class="text-gray-800">{{ getTranslatedText(answer.text) }}</span>
+        <span class="text-dark-900 font-medium text-lg">{{ getTranslatedText(answer.text) }}</span>
       </div>
     </label>
   </div>
