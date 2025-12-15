@@ -10,13 +10,14 @@
       <button
         v-for="(questionId, index) in questionOrder"
         :key="questionId"
+        :disabled="!canNavigateTo(index)"
         :class="[
           'w-11 h-11 rounded-xl font-semibold transition-all duration-150',
           index === currentQuestionIndex
             ? 'bg-primary-600 text-white ring-2 ring-primary-300 shadow-md'
             : isAnswered(questionId)
-              ? 'bg-success-100 text-success-700 hover:bg-success-200 hover:shadow-sm'
-              : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm',
+              ? 'bg-primary-200 text-primary-700 hover:bg-primary-400 hover:shadow-sm cursor-pointer'
+              : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm cursor-not-allowed opacity-50'
         ]"
         @click="() => handleNavigate(index)"
       >
@@ -44,7 +45,18 @@ const isAnswered = (questionId: string): boolean => {
   return !!props.userAnswers[questionId]
 }
 
+const canNavigateTo = (index: number): boolean => {
+  // Can always navigate to current question
+  if (index === props.currentQuestionIndex) return true
+
+  // Can navigate to already answered questions
+  const questionId = props.questionOrder[index]
+  if (!questionId) return false
+  return isAnswered(questionId)
+}
+
 const handleNavigate = (index: number) => {
+  if (!canNavigateTo(index)) return
   emit('navigate', index)
 }
 </script>

@@ -10,6 +10,7 @@
 
     <BaseButton
       variant="primary"
+      :disabled="!isAnswered && !isLastQuestion"
       @click="$emit('next')"
     >
       {{ isLastQuestion ? t('quiz.submit') : t('quiz.next') }}
@@ -21,6 +22,7 @@
 defineProps<{
   isFirstQuestion: boolean
   isLastQuestion: boolean
+  isAnswered: boolean
 }>()
 
 defineEmits<{

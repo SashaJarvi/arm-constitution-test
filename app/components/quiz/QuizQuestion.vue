@@ -1,5 +1,8 @@
 <template>
-  <div v-if="question" class="quiz-question">
+  <div
+    v-if="question"
+    class="quiz-question"
+  >
     <h2 class="text-xl md:text-2xl font-bold text-dark-900 mb-8 leading-snug">
       {{ getTranslatedText(question.text) }}
     </h2>
@@ -14,7 +17,7 @@
 <script setup lang="ts">
 import type { Question } from '~/types/quiz'
 
-const props = defineProps<{
+defineProps<{
   question: Question | undefined
   selectedAnswerId?: string
 }>()

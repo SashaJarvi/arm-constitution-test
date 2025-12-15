@@ -1,8 +1,8 @@
-import { defineConfig, presetUno, presetAttributify, presetIcons } from 'unocss'
+import { defineConfig, presetWind4, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetWind4(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
@@ -40,16 +40,20 @@ export default defineConfig({
       'success': {
         50: '#f0fdf4',
         100: '#dcfce7',
+        300: '#86efac',
         500: '#22c55e',
         600: '#16a34a',
-        700: '#15803d'
+        700: '#15803d',
+        900: '#14532d'
       },
       'error': {
         50: '#fef2f2',
         100: '#fee2e2',
+        300: '#fca5a5',
         500: '#ef4444',
         600: '#dc2626',
-        700: '#b91c1c'
+        700: '#b91c1c',
+        900: '#7f1d1d'
       },
       'warning': {
         50: '#fffbeb',
@@ -74,6 +78,6 @@ export default defineConfig({
     'btn-secondary': 'btn bg-gray-light text-dark-900 hover:bg-gray-200 '
       + 'border border-gray-light-border hover:border-gray-light-border-dark',
     'card': 'bg-white rounded-2xl p-6',
-    'input-radio': 'w-5 h-5 text-primary-600 focus:ring-primary-500 focus:ring-2 cursor-pointer'
+    'input-radio': 'w-5 h-5 flex-shrink-0 text-primary-600 focus:ring-primary-500 focus:ring-2 cursor-pointer'
   }
 })

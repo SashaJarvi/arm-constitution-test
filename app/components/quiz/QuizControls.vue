@@ -12,7 +12,7 @@
         'px-4 py-2 rounded-lg font-medium transition-colors',
         isPaused
           ? 'bg-success-600 text-white hover:bg-success-700'
-          : 'bg-warning-600 text-white hover:bg-warning-700',
+          : 'bg-warning-600 text-white hover:bg-warning-700'
       ]"
       @click="$emit('togglePause')"
     >
