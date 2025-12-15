@@ -64,12 +64,17 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+
 const { t } = useI18n()
 const { restoreSession } = useQuizStorage()
 const quizStore = useQuizStore()
 
-// Restore session
-const savedState = restoreSession()
+// Get state from store
+const { state: quizState } = storeToRefs(quizStore)
+
+// Restore session if store is empty
+const savedState = quizState.value.questions.length > 0 ? quizState.value : restoreSession()
 
 if (!savedState || !savedState.isCompleted) {
   navigateTo('/')

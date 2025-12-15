@@ -63,6 +63,7 @@
             <QuizNavigation
               :is-first-question="isFirstQuestion"
               :is-last-question="isLastQuestion"
+              :is-answered="!!currentAnswer"
               @previous="quizStore.previousQuestion"
               @next="handleNext"
             />
@@ -130,11 +131,6 @@ const handleNext = () => {
 
 // Handle submit
 const handleSubmit = () => {
-  if (!canSubmit.value) {
-    alert(t('quiz.confirmSubmit'))
-    return
-  }
-
   const confirmed = confirm(t('quiz.confirmSubmit'))
   if (confirmed) {
     quizStore.submitQuiz()

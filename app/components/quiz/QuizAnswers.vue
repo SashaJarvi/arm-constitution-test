@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz-answers space-y-4">
+  <div class="quiz-answers flex flex-col gap-2 space-y-5">
     <label
       v-for="answer in answers"
       :key="answer.id"
@@ -7,7 +7,7 @@
         'block p-5 border-2 rounded-2xl cursor-pointer transition-all duration-150',
         selectedAnswerId === answer.id
           ? 'border-primary-600 bg-primary-50 shadow-md'
-          : 'border-gray-light-border hover:border-primary-400 hover:bg-gray-50 hover:shadow-sm',
+          : 'border-gray-light-border hover:border-primary-400 hover:bg-gray-50 hover:shadow-sm'
       ]"
     >
       <div class="flex items-center gap-4">
