@@ -6,7 +6,7 @@
         'px-4 py-2 rounded-full transition-all text-sm font-semibold duration-150',
         currentLocale === 'hy'
           ? 'bg-primary-600 text-white shadow-md'
-          : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm',
+          : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm'
       ]"
       @click="() => switchLanguage('hy')"
     >
@@ -17,7 +17,7 @@
         'px-4 py-2 rounded-full transition-all text-sm font-semibold duration-150',
         currentLocale === 'ru'
           ? 'bg-primary-600 text-white shadow-md'
-          : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm',
+          : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm'
       ]"
       @click="() => switchLanguage('ru')"
     >

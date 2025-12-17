@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import type { Answer } from '~/types/quiz'
 
-const props = defineProps<{
+defineProps<{
   answers: Answer[]
   selectedAnswerId?: string
 }>()

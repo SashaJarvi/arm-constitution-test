@@ -35,7 +35,7 @@ export const useQuizResults = (state: QuizState) => {
       unansweredQuestions,
       percentage,
       timeSpent,
-      wrongQuestionIds,
+      wrongQuestionIds
     }
   }
 
@@ -52,7 +52,7 @@ export const useQuizResults = (state: QuizState) => {
       userAnswer,
       correctAnswer,
       isCorrect: userAnswer?.isCorrect || false,
-      isAnswered: !!userAnswerId,
+      isAnswered: !!userAnswerId
     }
   }
 
@@ -60,6 +60,6 @@ export const useQuizResults = (state: QuizState) => {
 
   return {
     results,
-    getQuestionResult,
+    getQuestionResult
   }
 }

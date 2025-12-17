@@ -9,7 +9,7 @@
         <div
           :class="[
             'text-5xl font-bold mb-2',
-            `text-${resultColor}-600`,
+            `text-${resultColor}-600`
           ]"
         >
           {{ Math.round(results.percentage) }}%

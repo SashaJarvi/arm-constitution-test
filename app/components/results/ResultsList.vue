@@ -24,7 +24,7 @@ const getQuestionResultProps = (questionId: string) => {
     question: result.question,
     userAnswer: result.userAnswer,
     correctAnswer: result.correctAnswer,
-    isCorrect: result.isCorrect,
+    isCorrect: result.isCorrect
   }
 }
 

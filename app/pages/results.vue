@@ -19,7 +19,7 @@
             'px-6 py-2 rounded-lg font-medium transition-colors',
             !showWrongOnly
               ? 'bg-primary-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300',
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
           ]"
           @click="() => (showWrongOnly = false)"
         >
@@ -30,7 +30,7 @@
             'px-6 py-2 rounded-lg font-medium transition-colors',
             showWrongOnly
               ? 'bg-primary-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300',
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
           ]"
           @click="() => (showWrongOnly = true)"
         >
@@ -80,7 +80,7 @@ if (!savedState || !savedState.isCompleted) {
   navigateTo('/')
   throw createError({
     statusCode: 404,
-    message: 'No completed quiz found',
+    message: 'No completed quiz found'
   })
 }
 
@@ -115,6 +115,6 @@ const handleGoHome = () => {
 // SEO
 useSeoMeta({
   title: 'Quiz Results - Armenian Constitution Test',
-  description: `You scored ${Math.round(results.value.percentage)}% on the Armenian Constitution quiz`,
+  description: `You scored ${Math.round(results.value.percentage)}% on the Armenian Constitution quiz`
 })
 </script>

@@ -11,7 +11,7 @@ export const useQuizStorage = () => {
     savedSession.value = {
       state,
       lastUpdated: Date.now(),
-      version: STORAGE_VERSION,
+      version: STORAGE_VERSION
     }
   }
 
@@ -37,6 +37,6 @@ export const useQuizStorage = () => {
     saveSession,
     restoreSession,
     clearSession,
-    hasSession,
+    hasSession
   }
 }
