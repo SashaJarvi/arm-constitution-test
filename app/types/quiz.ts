@@ -2,7 +2,7 @@
 export const DIFFICULTY = {
   EASY: 'easy',
   MEDIUM: 'medium',
-  HARD: 'hard',
+  HARD: 'hard'
 } as const
 
 export type Difficulty = typeof DIFFICULTY[keyof typeof DIFFICULTY]
@@ -28,6 +28,7 @@ export type QuizState = {
   questions: Question[]
   currentQuestionIndex: number
   userAnswers: Record<string, string> // questionId -> answerId
+  visitedQuestions: string[] // Question IDs that have been visited
   startTime: number
   isPaused: boolean
   isCompleted: boolean

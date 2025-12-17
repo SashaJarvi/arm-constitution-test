@@ -10,10 +10,11 @@ export const useQuizStore = defineStore('quiz', () => {
     questions: [],
     currentQuestionIndex: 0,
     userAnswers: {},
+    visitedQuestions: [],
     startTime: Date.now(),
     isPaused: false,
     isCompleted: false,
-    questionOrder: [],
+    questionOrder: []
   })
 
   // Getters
@@ -30,18 +31,18 @@ export const useQuizStore = defineStore('quiz', () => {
   })
 
   const isFirstQuestion = computed(
-    () => state.value.currentQuestionIndex === 0,
+    () => state.value.currentQuestionIndex === 0
   )
 
   const isLastQuestion = computed(
     () =>
-      state.value.currentQuestionIndex === state.value.questions.length - 1,
+      state.value.currentQuestionIndex === state.value.questions.length - 1
   )
 
   const canSubmit = computed(
     () =>
-      Object.keys(state.value.userAnswers).length ===
-      state.value.questions.length,
+      Object.keys(state.value.userAnswers).length
+      === state.value.questions.length
   )
 
   // Actions
@@ -52,14 +53,16 @@ export const useQuizStore = defineStore('quiz', () => {
       state.value = restored
     }
     else {
+      const questionOrder = shuffleArray(questions.map(q => q.id))
       state.value = {
         questions,
         currentQuestionIndex: 0,
         userAnswers: {},
+        visitedQuestions: [questionOrder[0] as string], // Mark the first question as visited
         startTime: Date.now(),
         isPaused: false,
         isCompleted: false,
-        questionOrder: shuffleArray(questions.map(q => q.id)),
+        questionOrder
       }
       saveSession(state.value)
     }
@@ -70,9 +73,17 @@ export const useQuizStore = defineStore('quiz', () => {
     saveSession(state.value)
   }
 
+  const markQuestionAsVisited = (index: number) => {
+    const questionId = state.value.questionOrder[index]
+    if (questionId && !state.value.visitedQuestions.includes(questionId)) {
+      state.value.visitedQuestions.push(questionId)
+    }
+  }
+
   const goToQuestion = (index: number) => {
     if (index >= 0 && index < state.value.questions.length) {
       state.value.currentQuestionIndex = index
+      markQuestionAsVisited(index)
       saveSession(state.value)
     }
   }
@@ -80,6 +91,7 @@ export const useQuizStore = defineStore('quiz', () => {
   const nextQuestion = () => {
     if (state.value.currentQuestionIndex < state.value.questions.length - 1) {
       state.value.currentQuestionIndex++
+      markQuestionAsVisited(state.value.currentQuestionIndex)
       saveSession(state.value)
     }
   }
@@ -87,6 +99,7 @@ export const useQuizStore = defineStore('quiz', () => {
   const previousQuestion = () => {
     if (state.value.currentQuestionIndex > 0) {
       state.value.currentQuestionIndex--
+      markQuestionAsVisited(state.value.currentQuestionIndex)
       saveSession(state.value)
     }
   }
@@ -107,10 +120,11 @@ export const useQuizStore = defineStore('quiz', () => {
       questions: [],
       currentQuestionIndex: 0,
       userAnswers: {},
+      visitedQuestions: [],
       startTime: Date.now(),
       isPaused: false,
       isCompleted: false,
-      questionOrder: [],
+      questionOrder: []
     }
   }
 
@@ -133,6 +147,6 @@ export const useQuizStore = defineStore('quiz', () => {
     previousQuestion,
     togglePause,
     submitQuiz,
-    resetQuiz,
+    resetQuiz
   }
 })
