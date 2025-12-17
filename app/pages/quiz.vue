@@ -7,7 +7,13 @@
           <h1 class="text-2xl md:text-3xl font-bold text-dark-900">
             {{ t('landing.title') }}
           </h1>
-          <LanguageSwitcher />
+          <div class="flex items-center gap-4">
+            <QuizTimer
+              :start-time="quizState.startTime"
+              :is-paused="quizState.isPaused"
+            />
+            <LanguageSwitcher />
+          </div>
         </div>
 
         <QuizProgress

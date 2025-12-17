@@ -1,6 +1,10 @@
-import type { QuizState, QuizResult, QuestionResult } from '~/types/quiz'
+import type { QuizState, QuizResult, QuestionResult, Question, Answer } from '~/types/quiz'
 
-export const useQuizResults = (state: QuizState) => {
+type ReadonlyDeep<T> = T extends object
+  ? { readonly [K in keyof T]: ReadonlyDeep<T[K]> }
+  : T
+
+export const useQuizResults = (state: QuizState | ReadonlyDeep<QuizState>) => {
   const calculateResults = (): QuizResult => {
     const totalQuestions = state.questions.length
     let correctAnswers = 0
@@ -26,7 +30,7 @@ export const useQuizResults = (state: QuizState) => {
     const wrongAnswers = wrongQuestionIds.length
     const unansweredQuestions = totalQuestions - Object.keys(state.userAnswers).length
     const percentage = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0
-    const timeSpent = Math.floor((Date.now() - state.startTime) / 1000)
+    const timeSpent = state.timeSpent || Math.floor((Date.now() - state.startTime) / 1000)
 
     return {
       totalQuestions,
@@ -48,9 +52,9 @@ export const useQuizResults = (state: QuizState) => {
     const correctAnswer = question.answers.find(a => a.isCorrect)!
 
     return {
-      question,
-      userAnswer,
-      correctAnswer,
+      question: question as Question,
+      userAnswer: userAnswer as Answer | undefined,
+      correctAnswer: correctAnswer as Answer,
       isCorrect: userAnswer?.isCorrect || false,
       isAnswered: !!userAnswerId
     }

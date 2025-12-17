@@ -32,10 +32,10 @@
 <script setup lang="ts">
 const props = defineProps<{
   isVisible: boolean
-  questionOrder: string[]
+  questionOrder: readonly string[]
   currentQuestionIndex: number
   userAnswers: Record<string, string>
-  visitedQuestions: string[]
+  visitedQuestions: readonly string[]
 }>()
 
 const emit = defineEmits<{
