@@ -1,26 +1,24 @@
 <template>
-  <div class="quiz-answers flex flex-col gap-2 space-y-5">
+  <div class="quiz-answers flex flex-col gap-5">
     <label
       v-for="answer in answers"
       :key="answer.id"
       :class="[
-        'block p-5 border-2 rounded-2xl cursor-pointer transition-all duration-150',
+        'flex items-center gap-4 p-5 border-2 rounded-2xl cursor-pointer transition-all duration-150',
         selectedAnswerId === answer.id
           ? 'border-primary-600 bg-primary-50 shadow-md'
           : 'border-gray-light-border hover:border-primary-400 hover:bg-gray-50 hover:shadow-sm'
       ]"
     >
-      <div class="flex items-center gap-4">
-        <input
-          type="radio"
-          :name="radioName"
-          :value="answer.id"
-          :checked="selectedAnswerId === answer.id"
-          class="input-radio"
-          @change="() => handleSelect(answer.id)"
-        >
-        <span class="text-dark-900 font-medium text-lg">{{ getTranslatedText(answer.text) }}</span>
-      </div>
+      <input
+        type="radio"
+        :name="radioName"
+        :value="answer.id"
+        :checked="selectedAnswerId === answer.id"
+        class="input-radio"
+        @change="() => handleSelect(answer.id)"
+      >
+      <span class="text-dark-900 font-medium text-lg">{{ getTranslatedText(answer.text) }}</span>
     </label>
   </div>
 </template>

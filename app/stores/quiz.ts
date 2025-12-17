@@ -12,6 +12,9 @@ export const useQuizStore = defineStore('quiz', () => {
     userAnswers: {},
     visitedQuestions: [],
     startTime: Date.now(),
+    timeSpent: 0,
+    totalPausedTime: 0,
+    pauseStartTime: null,
     isPaused: false,
     isCompleted: false,
     questionOrder: []
@@ -60,6 +63,9 @@ export const useQuizStore = defineStore('quiz', () => {
         userAnswers: {},
         visitedQuestions: [questionOrder[0] as string], // Mark the first question as visited
         startTime: Date.now(),
+        timeSpent: 0,
+        totalPausedTime: 0,
+        pauseStartTime: null,
         isPaused: false,
         isCompleted: false,
         questionOrder
@@ -105,11 +111,28 @@ export const useQuizStore = defineStore('quiz', () => {
   }
 
   const togglePause = () => {
+    if (!state.value.isPaused) {
+      // Pausing
+      state.value.pauseStartTime = Date.now()
+    }
+    else {
+      // Resuming
+      if (state.value.pauseStartTime !== null) {
+        state.value.totalPausedTime += Date.now() - state.value.pauseStartTime
+        state.value.pauseStartTime = null
+      }
+    }
     state.value.isPaused = !state.value.isPaused
     saveSession(state.value)
   }
 
   const submitQuiz = () => {
+    // If currently paused, add current pause duration
+    let totalPaused = state.value.totalPausedTime
+    if (state.value.isPaused && state.value.pauseStartTime !== null) {
+      totalPaused += Date.now() - state.value.pauseStartTime
+    }
+    state.value.timeSpent = Math.floor((Date.now() - state.value.startTime - totalPaused) / 1000)
     state.value.isCompleted = true
     saveSession(state.value)
   }
@@ -122,6 +145,9 @@ export const useQuizStore = defineStore('quiz', () => {
       userAnswers: {},
       visitedQuestions: [],
       startTime: Date.now(),
+      timeSpent: 0,
+      totalPausedTime: 0,
+      pauseStartTime: null,
       isPaused: false,
       isCompleted: false,
       questionOrder: []

@@ -30,6 +30,9 @@ export type QuizState = {
   userAnswers: Record<string, string> // questionId -> answerId
   visitedQuestions: string[] // Question IDs that have been visited
   startTime: number
+  timeSpent: number // in seconds
+  totalPausedTime: number // in milliseconds
+  pauseStartTime: number | null // timestamp when pause started
   isPaused: boolean
   isCompleted: boolean
   questionOrder: string[] // Randomized question IDs
