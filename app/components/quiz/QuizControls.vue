@@ -9,10 +9,11 @@
 
     <button
       :class="[
-        'px-4 py-2 rounded-lg font-medium transition-colors',
+        'px-6 py-3 rounded-full font-semibold transition-all duration-100 ease-out',
+        'cursor-pointer hover:scale-105 active:scale-100',
         isPaused
-          ? 'bg-success-600 text-white hover:bg-success-700'
-          : 'bg-warning-600 text-white hover:bg-warning-700'
+          ? 'bg-success-600 text-white hover:bg-success-700 shadow-md'
+          : 'bg-warning-600 text-white hover:bg-warning-700 shadow-md'
       ]"
       @click="$emit('togglePause')"
     >

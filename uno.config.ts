@@ -78,6 +78,6 @@ export default defineConfig({
     'btn-secondary': 'btn bg-gray-light text-dark-900 hover:bg-gray-200 '
       + 'border border-gray-light-border hover:border-gray-light-border-dark',
     'card': 'bg-white rounded-2xl p-6',
-    'input-radio': 'w-5 h-5 flex-shrink-0 text-primary-600 focus:ring-primary-500 focus:ring-2 cursor-pointer'
+    'input-radio': 'w-5 h-5 flex-shrink-0 text-primary-600 focus:outline-none cursor-pointer'
   }
 })

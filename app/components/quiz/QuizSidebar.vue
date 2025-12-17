@@ -17,7 +17,9 @@
             ? 'bg-primary-600 text-white ring-2 ring-primary-300 shadow-md'
             : isAnswered(questionId)
               ? 'bg-primary-200 text-primary-700 hover:bg-primary-400 hover:shadow-sm cursor-pointer'
-              : 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm cursor-not-allowed opacity-50'
+              : canNavigateTo(index)
+                ? 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm cursor-pointer'
+                : 'bg-gray-light text-dark-700 cursor-not-allowed opacity-50'
         ]"
         @click="() => handleNavigate(index)"
       >
@@ -33,6 +35,7 @@ const props = defineProps<{
   questionOrder: string[]
   currentQuestionIndex: number
   userAnswers: Record<string, string>
+  visitedQuestions: string[]
 }>()
 
 const emit = defineEmits<{
@@ -45,14 +48,16 @@ const isAnswered = (questionId: string): boolean => {
   return !!props.userAnswers[questionId]
 }
 
-const canNavigateTo = (index: number): boolean => {
-  // Can always navigate to current question
-  if (index === props.currentQuestionIndex) return true
+const isVisited = (questionId: string): boolean => {
+  return props.visitedQuestions.includes(questionId)
+}
 
-  // Can navigate to already answered questions
+const canNavigateTo = (index: number): boolean => {
   const questionId = props.questionOrder[index]
   if (!questionId) return false
-  return isAnswered(questionId)
+
+  // Can navigate to any visited question
+  return isVisited(questionId)
 }
 
 const handleNavigate = (index: number) => {

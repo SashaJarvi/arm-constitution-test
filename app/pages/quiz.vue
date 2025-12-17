@@ -48,6 +48,7 @@
           :question-order="quizState.questionOrder"
           :current-question-index="quizState.currentQuestionIndex"
           :user-answers="quizState.userAnswers"
+          :visited-questions="quizState.visitedQuestions"
           @navigate="quizStore.goToQuestion"
         />
 
