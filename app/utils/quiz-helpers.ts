@@ -1,4 +1,4 @@
-8787/**
+/**
  * Format time in seconds to MM:SS format
  */
 export const formatTime = (seconds: number): string => {
@@ -13,7 +13,7 @@ export const formatTime = (seconds: number): string => {
 export const calculatePercentage = (
   correct: number,
   total: number,
-  decimals = 1,
+  decimals = 1
 ): number => {
   if (total === 0) return 0
   return Number(((correct / total) * 100).toFixed(decimals))

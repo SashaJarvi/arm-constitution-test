@@ -4,7 +4,7 @@
       <div
         :class="[
           'flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold',
-          isCorrect ? 'bg-success-600' : 'bg-error-600',
+          isCorrect ? 'bg-success-600' : 'bg-error-600'
         ]"
       >
         {{ isCorrect ? '✓' : '✗' }}
@@ -23,7 +23,7 @@
           'p-3 rounded-lg border-2',
           isCorrect
             ? 'border-success-300 bg-success-50'
-            : 'border-error-300 bg-error-50',
+            : 'border-error-300 bg-error-50'
         ]"
       >
         <div class="text-xs font-medium text-gray-600 mb-1">

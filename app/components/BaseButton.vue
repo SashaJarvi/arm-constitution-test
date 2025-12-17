@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      variant === 'primary' ? 'btn-primary' : 'btn-secondary',
+      variant === 'primary' ? 'btn-primary' : 'btn-secondary'
     ]"
     :disabled="disabled"
     @click="$emit('click', $event)"
@@ -20,8 +20,8 @@ withDefaults(
   }>(),
   {
     variant: 'primary',
-    disabled: false,
-  },
+    disabled: false
+  }
 )
 
 defineEmits<{

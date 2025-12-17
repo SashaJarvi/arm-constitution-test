@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@pinia/nuxt',
-    '@nuxt/eslint',
+    '@nuxt/eslint'
   ],
   devtools: { enabled: true },
 
@@ -20,17 +20,17 @@ export default defineNuxtConfig({
         indent: 2,
         semi: false,
         quotes: 'single',
-        commaDangle: 'never',
-      },
-    },
+        commaDangle: 'never'
+      }
+    }
   },
 
   i18n: {
     defaultLocale: 'hy',
     locales: [
       { code: 'hy', name: 'Հայերեն', file: 'hy.json' },
-      { code: 'ru', name: 'Русский', file: 'ru.json' },
+      { code: 'ru', name: 'Русский', file: 'ru.json' }
     ],
-    strategy: 'no_prefix',
-  },
+    strategy: 'no_prefix'
+  }
 })

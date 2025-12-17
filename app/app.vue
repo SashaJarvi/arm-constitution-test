@@ -10,11 +10,11 @@ useHead({
   title: 'Armenian Constitution Test',
   meta: [
     { name: 'description', content: 'Test your knowledge of Armenian Constitution' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   htmlAttrs: {
-    lang: 'hy',
-  },
+    lang: 'hy'
+  }
 })
 </script>
 
