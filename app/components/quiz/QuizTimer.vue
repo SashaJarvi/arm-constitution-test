@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm">
-    <span class="text-sm font-medium text-dark-700">{{ t('quiz.timer') }}:</span>
-    <span class="text-lg font-bold text-primary-600 tabular-nums">{{ formattedTime }}</span>
+  <div class="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white dark:bg-dark-800 rounded-full shadow-sm">
+    <span class="text-xs md:text-sm font-medium text-dark-700 dark:text-gray-300">{{ t('quiz.timer') }}:</span>
+    <span class="text-base md:text-lg font-bold text-primary-600 tabular-nums">{{ formattedTime }}</span>
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     v-if="question"
     class="quiz-question"
   >
-    <h2 class="text-xl md:text-2xl font-bold text-dark-900 mb-8 leading-snug">
+    <h2 class="text-lg md:text-2xl font-bold text-dark-900 dark:text-gray-100 mb-4 md:mb-5 leading-snug">
       {{ getTranslatedText(question.text) }}
     </h2>
     <QuizAnswers

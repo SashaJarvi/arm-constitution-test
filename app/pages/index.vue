@@ -1,15 +1,8 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center p-4 md:p-8">
+  <div class="flex items-center justify-center p-4 md:p-8">
     <div class="w-full max-w-3xl">
-      <div class="flex justify-end mb-8">
-        <LanguageSwitcher />
-      </div>
-
       <div class="card text-center shadow-lg">
-        <h1 class="text-4xl md:text-5xl font-bold text-dark-900 mb-6 leading-tight">
-          {{ t('landing.title') }}
-        </h1>
-        <p class="text-xl text-dark-600 mb-10 font-medium">
+        <p class="text-xl text-dark-700 dark:text-gray-300 mb-10 font-medium">
           {{ t('landing.description') }}
         </p>
 

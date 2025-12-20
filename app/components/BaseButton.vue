@@ -4,7 +4,7 @@
       variant === 'primary' ? 'btn-primary' : 'btn-secondary'
     ]"
     :disabled="disabled"
-    @click="$emit('click', $event)"
+    @click="emit('click', $event)"
   >
     <slot />
   </button>
@@ -24,7 +24,7 @@ withDefaults(
   }
 )
 
-defineEmits<{
+const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
 </script>
