@@ -1,19 +1,13 @@
 <template>
-  <div class="min-h-screen p-4 md:p-8">
+  <div class="p-3 md:p-6">
     <div class="max-w-6xl mx-auto">
-      <!-- Header -->
-      <header class="mb-8">
-        <div class="flex flex-wrap justify-between items-center mb-6 gap-6">
-          <h1 class="text-2xl md:text-3xl font-bold text-dark-900">
-            {{ t('landing.title') }}
-          </h1>
-          <div class="flex items-center gap-4">
-            <QuizTimer
-              :start-time="quizState.startTime"
-              :is-paused="quizState.isPaused"
-            />
-            <LanguageSwitcher />
-          </div>
+      <!-- Quiz Info -->
+      <div class="mb-4">
+        <div class="flex justify-end mb-3">
+          <QuizTimer
+            :start-time="quizState.startTime"
+            :is-paused="quizState.isPaused"
+          />
         </div>
 
         <QuizProgress
@@ -29,53 +23,54 @@
           @toggle-sidebar="toggleSidebar"
           @submit="handleSubmit"
         />
-      </header>
 
-      <!-- Pause Overlay -->
-      <div
-        v-if="quizState.isPaused"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm"
-      >
-        <div class="bg-white rounded-3xl p-10 text-center max-w-md shadow-2xl mx-4">
-          <h2 class="text-3xl font-bold text-dark-900 mb-6">
-            {{ t('quiz.pause') }}
-          </h2>
-          <BaseButton @click="quizStore.togglePause">
-            {{ t('quiz.resume') }}
-          </BaseButton>
-        </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="flex flex-col md:flex-row gap-6">
-        <!-- Sidebar -->
-        <QuizSidebar
-          :is-visible="isSidebarVisible"
-          :question-order="quizState.questionOrder"
-          :current-question-index="quizState.currentQuestionIndex"
-          :user-answers="quizState.userAnswers"
-          :visited-questions="quizState.visitedQuestions"
-          @navigate="quizStore.goToQuestion"
-        />
-
-        <!-- Quiz Content -->
-        <main class="flex-1">
-          <div class="card">
-            <QuizQuestion
-              :question="currentQuestion"
-              :selected-answer-id="currentAnswer"
-              @select="handleAnswerSelect"
-            />
-
-            <QuizNavigation
-              :is-first-question="isFirstQuestion"
-              :is-last-question="isLastQuestion"
-              :is-answered="!!currentAnswer"
-              @previous="quizStore.previousQuestion"
-              @next="handleNext"
-            />
+        <!-- Pause Overlay -->
+        <div
+          v-if="quizState.isPaused"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm"
+        >
+          <div class="bg-white rounded-3xl p-10 text-center max-w-md shadow-2xl mx-4">
+            <h2 class="text-3xl font-bold text-dark-900 mb-6">
+              {{ t('quiz.pause') }}
+            </h2>
+            <BaseButton @click="quizStore.togglePause">
+              {{ t('quiz.resume') }}
+            </BaseButton>
           </div>
-        </main>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col md:flex-row gap-4">
+          <!-- Sidebar -->
+          <QuizSidebar
+            :is-visible="isSidebarVisible"
+            :question-order="quizState.questionOrder"
+            :current-question-index="quizState.currentQuestionIndex"
+            :user-answers="quizState.userAnswers"
+            :visited-questions="quizState.visitedQuestions"
+            @navigate="quizStore.goToQuestion"
+          />
+
+          <!-- Quiz Content -->
+          <article class="flex-1">
+            <div class="flex flex-col card md:h-full">
+              <QuizQuestion
+                class="flex-1"
+                :question="currentQuestion"
+                :selected-answer-id="currentAnswer"
+                @select="handleAnswerSelect"
+              />
+
+              <QuizNavigation
+                :is-first-question="isFirstQuestion"
+                :is-last-question="isLastQuestion"
+                :is-answered="!!currentAnswer"
+                @previous="quizStore.previousQuestion"
+                @next="handleNext"
+              />
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </div>

@@ -10,7 +10,7 @@
         {{ isCorrect ? '✓' : '✗' }}
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
           {{ getTranslatedText(question.text) }}
         </h3>
       </div>
@@ -22,26 +22,26 @@
         :class="[
           'p-3 rounded-lg border-2',
           isCorrect
-            ? 'border-success-300 bg-success-50'
-            : 'border-error-300 bg-error-50'
+            ? 'border-success-300 dark:border-success-700 bg-success-50 dark:bg-success-900/20'
+            : 'border-error-300 dark:border-error-700 bg-error-50 dark:bg-error-900/20'
         ]"
       >
-        <div class="text-xs font-medium text-gray-600 mb-1">
+        <div class="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
           {{ t('results.yourAnswer') }}
         </div>
-        <div :class="isCorrect ? 'text-success-900' : 'text-error-900'">
+        <div :class="isCorrect ? 'text-success-900 dark:text-success-300' : 'text-error-900 dark:text-error-300'">
           {{ getTranslatedText(userAnswer.text) }}
         </div>
       </div>
 
       <div
         v-if="!isCorrect"
-        class="p-3 rounded-lg border-2 border-success-300 bg-success-50"
+        class="p-3 rounded-lg border-2 border-success-300 dark:border-success-700 bg-success-50 dark:bg-success-900/20"
       >
-        <div class="text-xs font-medium text-gray-600 mb-1">
+        <div class="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
           {{ t('results.correctAnswer') }}
         </div>
-        <div class="text-success-900">
+        <div class="text-success-900 dark:text-success-300">
           {{ getTranslatedText(correctAnswer.text) }}
         </div>
       </div>

@@ -34,6 +34,9 @@ dependencies:
     version: 4.6.4(vue@3.5.25)
 
 devDependencies:
+  '@iconify-json/heroicons':
+    specifier: ^1.2.3
+    version: 1.2.3
   '@nuxt/eslint':
     specifier: ^1.12.1
     version: 1.12.1(@vue/compiler-sfc@3.5.25)(eslint@9.39.2)(typescript@5.9.3)(vite@7.2.7)
@@ -991,6 +994,12 @@ packages:
   /@humanwhocodes/retry@0.4.3:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
+
+  /@iconify-json/heroicons@1.2.3:
+    resolution: {integrity: sha512-n+vmCEgTesRsOpp5AB5ILB6srsgsYK+bieoQBNlafvoEhjVXLq8nIGN4B0v/s4DUfa0dOrjwE/cKJgIKdJXOEg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}

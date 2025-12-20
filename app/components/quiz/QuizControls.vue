@@ -1,21 +1,21 @@
 <template>
-  <div class="flex items-center gap-3 flex-wrap">
+  <div class="flex items-center gap-2 md:gap-3 flex-wrap mb-4">
     <button
-      class="px-4 py-2 rounded-lg font-medium transition-colors bg-gray-200 text-gray-800 hover:bg-gray-300 md:hidden"
-      @click="$emit('toggleSidebar')"
+      class="btn-secondary md:hidden"
+      @click="emit('toggleSidebar')"
     >
       {{ t('quiz.toggleSidebar') }}
     </button>
 
     <button
       :class="[
-        'px-6 py-3 rounded-full font-semibold transition-all duration-100 ease-out',
+        'px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-100 ease-out',
         'cursor-pointer hover:scale-105 active:scale-100',
         isPaused
           ? 'bg-success-600 text-white hover:bg-success-700 shadow-md'
           : 'bg-warning-600 text-white hover:bg-warning-700 shadow-md'
       ]"
-      @click="$emit('togglePause')"
+      @click="emit('togglePause')"
     >
       {{ isPaused ? t('quiz.resume') : t('quiz.pause') }}
     </button>

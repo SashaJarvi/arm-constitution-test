@@ -2,7 +2,9 @@ import { defineConfig, presetWind4, presetAttributify, presetIcons } from 'unocs
 
 export default defineConfig({
   presets: [
-    presetWind4(),
+    presetWind4({
+      dark: 'class'
+    }),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
@@ -71,13 +73,16 @@ export default defineConfig({
   },
 
   shortcuts: {
-    'btn': 'px-6 py-3 rounded-full font-semibold transition-all duration-100 ease-out '
-      + 'cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-100',
+    'btn': 'px-4 py-2 md:px-6 md:py-3 rounded-full font-semibold transition-all duration-100 ease-out '
+      + 'cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-100 text-sm md:text-base',
     'btn-primary': 'btn bg-primary-600 text-white hover:bg-primary-700 '
       + 'border border-primary-600 hover:border-primary-700',
-    'btn-secondary': 'btn bg-gray-light text-dark-900 hover:bg-gray-200 '
-      + 'border border-gray-light-border hover:border-gray-light-border-dark',
-    'card': 'bg-white rounded-2xl p-6',
+    'btn-secondary':
+      'btn bg-gray-light dark:bg-dark-700 text-dark-900 dark:text-gray-100 '
+      + 'hover:bg-gray-200 dark:hover:bg-dark-600 '
+      + 'border border-gray-light-border dark:border-dark-600 '
+      + 'hover:border-gray-light-border-dark dark:hover:border-dark-500',
+    'card': 'bg-white dark:bg-dark-800 rounded-2xl p-4 md:p-5 transition-colors duration-200',
     'input-radio': 'w-5 h-5 flex-shrink-0 text-primary-600 focus:outline-none cursor-pointer'
   }
 })

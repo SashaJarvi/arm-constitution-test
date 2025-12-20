@@ -1,7 +1,13 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    class="min-h-screen bg-gray-light dark:bg-dark-900 transition-colors duration-200"
+  >
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <AppHeader />
+    <main>
+      <NuxtPage />
+    </main>
   </div>
 </template>
 
@@ -25,6 +31,10 @@ useHead({
   box-sizing: border-box;
 }
 
+html {
+  transition: background-color 0.2s ease;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
@@ -32,9 +42,11 @@ body {
   background-color: #f5f7fa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-#app {
-  min-height: 100vh;
+.dark body {
+  color: #e5e7eb;
+  background-color: #1a1d2e;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="flex justify-between items-center mt-8 gap-4">
+  <div class="flex justify-between items-center mt-5 gap-4">
     <BaseButton
       variant="secondary"
       :disabled="isFirstQuestion"
-      @click="$emit('previous')"
+      @click="emit('previous')"
     >
       {{ t('quiz.previous') }}
     </BaseButton>
@@ -11,7 +11,7 @@
     <BaseButton
       variant="primary"
       :disabled="!isAnswered && !isLastQuestion"
-      @click="$emit('next')"
+      @click="emit('next')"
     >
       {{ isLastQuestion ? t('quiz.submit') : t('quiz.next') }}
     </BaseButton>
@@ -25,7 +25,7 @@ defineProps<{
   isAnswered: boolean
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   previous: []
   next: []
 }>()

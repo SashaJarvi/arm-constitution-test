@@ -1,9 +1,10 @@
 <template>
   <aside
-    v-if="isVisible"
-    class="quiz-sidebar w-full md:w-64 bg-white rounded-2xl shadow-md p-5 mb-6 md:mb-0"
+    v-if="isVisible || screenWidth >= 768"
+    class="quiz-sidebar w-full md:w-72 bg-white dark:bg-dark-800 rounded-2xl shadow-md p-4 mb-4 md:mb-0
+    transition-colors duration-200"
   >
-    <h3 class="text-lg font-bold text-dark-900 mb-4">
+    <h3 class="text-lg font-bold text-dark-900 dark:text-gray-100 mb-3">
       {{ t('quiz.questionList') }}
     </h3>
     <div class="flex flex-wrap gap-2">
@@ -21,7 +22,7 @@
                 ? 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm cursor-pointer'
                 : 'bg-gray-light text-dark-700 cursor-not-allowed opacity-50'
         ]"
-        @click="() => handleNavigate(index)"
+        @click="handleNavigate(index)"
       >
         {{ index + 1 }}
       </button>
@@ -43,6 +44,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const { width: screenWidth } = useWindowSize()
 
 const isAnswered = (questionId: string): boolean => {
   return !!props.userAnswers[questionId]
