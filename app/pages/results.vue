@@ -108,7 +108,7 @@ const handleGoHome = () => {
 
 // SEO
 useSeoMeta({
-  title: 'Quiz Results - Armenian Constitution Test',
-  description: `You scored ${Math.round(results.value.percentage)}% on the Armenian Constitution quiz`
+  title: () => `${t('results.title')} - ${t('landing.title')}`,
+  description: () => t('results.seoDescription', { percentage: Math.round(results.value.percentage) })
 })
 </script>

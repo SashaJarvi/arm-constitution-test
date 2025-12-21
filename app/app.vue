@@ -12,14 +12,16 @@
 </template>
 
 <script setup lang="ts">
+const { t, locale } = useI18n()
+
 useHead({
-  title: 'Armenian Constitution Test',
+  title: () => t('landing.title'),
   meta: [
-    { name: 'description', content: 'Test your knowledge of Armenian Constitution' },
+    { name: 'description', content: () => t('landing.description') },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   htmlAttrs: {
-    lang: 'hy'
+    lang: () => locale.value
   }
 })
 </script>
