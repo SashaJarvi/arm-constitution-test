@@ -1,8 +1,8 @@
 <template>
   <div class="quiz-progress mb-4">
-    <div class="flex justify-between items-center mb-2 text-sm text-dark-600 dark:text-gray-300">
+    <div class="flex justify-between items-center mb-2 text-sm text-dark-600 dark:text-gray-100">
       <span class="font-semibold">{{ t('quiz.questionCounter', { current: currentIndex + 1, total: totalQuestions }) }}</span>
-      <span class="font-bold text-primary-600">{{ Math.round(progressPercentage) }}%</span>
+      <span class="font-bold text-primary-600 dark:text-primary-300">{{ Math.round(progressPercentage) }}%</span>
     </div>
     <div class="w-full bg-gray-light dark:bg-dark-700 rounded-full h-3">
       <div

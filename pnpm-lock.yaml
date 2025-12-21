@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@nuxtjs/color-mode':
+    specifier: ^4.0.0
+    version: 4.0.0
   '@nuxtjs/i18n':
     specifier: ^10.2.1
     version: 10.2.1(eslint@9.39.2)(rollup@4.53.3)(vue@3.5.25)
@@ -1703,6 +1706,18 @@ packages:
       - vti
       - vue-tsc
       - yaml
+    dev: false
+
+  /@nuxtjs/color-mode@4.0.0:
+    resolution: {integrity: sha512-xyaVR/TPLdMuRa2VOgH6b75jvmFEsn9QKL6ISldaAw38ooFJfWY1ts2F3ye43wcT/goCbcuvPuskF2f8yUZhlw==}
+    dependencies:
+      '@nuxt/kit': 4.2.2(magicast@0.5.1)
+      exsolve: 1.0.8
+      pathe: 2.0.3
+      pkg-types: 2.3.0
+      semver: 7.7.3
+    transitivePeerDependencies:
+      - magicast
     dev: false
 
   /@nuxtjs/i18n@10.2.1(eslint@9.39.2)(rollup@4.53.3)(vue@3.5.25):
