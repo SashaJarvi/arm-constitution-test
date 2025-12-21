@@ -77,7 +77,8 @@
     "retake": "Пройти снова",
     "home": "Главная",
     "yourAnswer": "Ваш ответ",
-    "correctAnswer": "Правильный ответ"
+    "correctAnswer": "Правильный ответ",
+    "seoDescription": "Вы набрали {percentage}% в тесте по Конституции Армении"
   },
   "common": {
     "loading": "Загрузка...",

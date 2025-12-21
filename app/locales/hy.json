@@ -77,7 +77,8 @@
     "retake": "Կրկին անցնել",
     "home": "Գլխավոր",
     "yourAnswer": "Ձեր պատասխան",
-    "correctAnswer": "Ճիշտ պատասխան"
+    "correctAnswer": "Ճիշտ պատասխան",
+    "seoDescription": "Դուք հավաքել եք {percentage}% Հայաստանի Սահմանադրության թեստում"
   },
   "common": {
     "loading": "Բեռնվում է...",
