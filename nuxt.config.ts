@@ -6,11 +6,18 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@pinia/nuxt',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxtjs/color-mode'
   ],
   devtools: { enabled: true },
 
   css: ['@unocss/reset/tailwind.css'],
+
+  colorMode: {
+    classSuffix: '',
+    preference: 'system',
+    fallback: 'light'
+  },
   compatibilityDate: '2025-07-15',
 
   eslint: {

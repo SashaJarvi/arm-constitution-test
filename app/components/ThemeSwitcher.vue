@@ -30,7 +30,6 @@ interface ThemeOption {
 
 const themeOptions: ThemeOption[] = [
   { value: 'light' as Theme, icon: 'i-heroicons-sun-20-solid', ariaLabelText: 'Light theme' },
-  { value: 'system' as Theme, icon: 'i-heroicons-computer-desktop-20-solid', ariaLabelText: 'System theme' },
   { value: 'dark' as Theme, icon: 'i-heroicons-moon-20-solid', ariaLabelText: 'Dark theme' }
 ]
 </script>
