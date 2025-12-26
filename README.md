@@ -1,17 +1,40 @@
-# Nuxt Minimal Starter
+# Armenian Constitution Quiz
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+An interactive, bilingual quiz application to test knowledge about the Constitution of the Republic of Armenia (Հայաստանի Հանրապետության Սահմանադրություն).
+
+## Features
+
+- 🌐 **Bilingual Support** - Full internationalization with Armenian (Հայերեն) and Russian (Русский) languages
+- 🌓 **Dark Mode** - Automatic theme detection with manual override (light/dark/system)
+- ⏱️ **Timer** - Track time spent on the quiz
+- 📊 **Progress Tracking** - Visual progress indicators and question navigation
+- 💾 **Auto-save** - Session persistence to continue quiz later
+- 📱 **Responsive Design** - Optimized for mobile, tablet, and desktop
+- 🎯 **Results Analysis** - Detailed results with correct/incorrect answers review
+- ♿ **Accessible** - WCAG compliant with proper ARIA labels and keyboard navigation
+- ✅ **Tested** - Comprehensive unit test coverage with Vitest
+
+## Tech Stack
+
+- **Framework:** [Nuxt 4](https://nuxt.com/) - Vue.js framework for production-ready applications
+- **UI:** [UnoCSS](https://unocss.dev/) - Instant atomic CSS engine
+- **State Management:** [Pinia](https://pinia.vuejs.org/) - The Vue Store
+- **Internationalization:** [@nuxtjs/i18n](https://i18n.nuxtjs.org/) - i18n module for Nuxt
+- **Theme:** [@nuxtjs/color-mode](https://color-mode.nuxtjs.org/) - Dark and light mode for Nuxt
+- **Icons:** [Heroicons](https://heroicons.com/) via UnoCSS
+- **Testing:** [Vitest](https://vitest.dev/) + [@nuxt/test-utils](https://nuxt.com/docs/getting-started/testing)
+- **Code Quality:** ESLint, TypeScript, Husky, lint-staged
 
 ## Setup
 
 Make sure to install dependencies:
 
 ```bash
+# pnpm (recommended)
+pnpm install
+
 # npm
 npm install
-
-# pnpm
-pnpm install
 
 # yarn
 yarn install
@@ -20,63 +43,37 @@ yarn install
 bun install
 ```
 
-## Development Server
+## Development
 
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+
+The app features:
+- Hot Module Replacement (HMR)
+- TypeScript support
+- Auto-imports for components and composables
+- DevTools enabled
 
 ## Production
 
 Build the application for production:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
 Locally preview production build:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ## Testing
 
-This project uses [Vitest](https://vitest.dev/) with [@nuxt/test-utils](https://nuxt.com/docs/getting-started/testing) for unit testing.
+This project uses [Vitest](https://vitest.dev/) with [@nuxt/test-utils](https://nuxt.com/docs/getting-started/testing) for comprehensive unit testing.
 
 ### Running Tests
 
@@ -139,6 +136,20 @@ describe('YourComponent', () => {
 })
 ```
 
+#### Using Parametrized Tests
+
+To avoid duplication, use `it.each()` for similar test cases:
+
+```typescript
+it.each([
+  { input: 1, expected: 2 },
+  { input: 2, expected: 4 },
+  { input: 3, expected: 6 }
+])('doubles $input to $expected', ({ input, expected }) => {
+  expect(double(input)).toBe(expected)
+})
+```
+
 #### Mocking Nuxt Composables
 
 Use `mockNuxtImport` to mock auto-imported Nuxt composables:
@@ -163,6 +174,7 @@ import { defineVitestConfig } from '@nuxt/test-utils/config'
 export default defineVitestConfig({
   test: {
     environment: 'nuxt',
+    setupFiles: ['./test/setup.ts'],
     environmentOptions: {
       nuxt: {
         mock: {
@@ -175,9 +187,80 @@ export default defineVitestConfig({
 })
 ```
 
-### Resources
+## Code Quality
 
-- [Nuxt Testing Documentation](https://nuxt.com/docs/getting-started/testing)
-- [@nuxt/test-utils Documentation](https://nuxt.com/docs/getting-started/testing#nuxttest-utils)
+The project uses several tools to maintain code quality:
+
+- **TypeScript** - Type safety and better DX
+- **ESLint** - Code linting with stylistic rules
+- **Husky** - Git hooks for pre-commit checks
+- **lint-staged** - Run linters on staged files
+
+### Pre-commit Hooks
+
+Before each commit, the following checks run automatically:
+1. TypeScript type checking
+2. ESLint with auto-fix
+3. Test suite execution
+
+Configure in `.lintstagedrc.mjs`.
+
+## Project Structure
+
+```
+arm-constitution-test/
+├── app/
+│   ├── components/       # Vue components
+│   │   ├── quiz/        # Quiz-specific components
+│   │   └── results/     # Results page components
+│   ├── composables/     # Vue composables
+│   ├── locales/         # i18n translation files
+│   ├── pages/           # Application pages (auto-routed)
+│   ├── stores/          # Pinia stores
+│   ├── types/           # TypeScript type definitions
+│   └── utils/           # Utility functions
+├── test/
+│   ├── nuxt/           # Nuxt-aware tests
+│   │   ├── components/ # Component tests
+│   │   └── utils/      # Utility tests
+│   └── setup.ts        # Test setup and mocks
+└── public/             # Static assets
+```
+
+## Available Scripts
+
+```bash
+# Development
+pnpm dev              # Start development server
+pnpm build            # Build for production
+pnpm generate         # Generate static site
+pnpm preview          # Preview production build
+
+# Code Quality
+pnpm lint             # Run ESLint
+pnpm lint:fix         # Run ESLint with auto-fix
+pnpm typecheck        # Run TypeScript type checking
+
+# Testing
+pnpm test             # Run tests in watch mode
+pnpm test:ui          # Run tests with UI
+pnpm test:coverage    # Run tests with coverage report
+```
+
+## Deployment
+
+Check out the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information on deploying to various platforms.
+
+## Resources
+
+- [Nuxt Documentation](https://nuxt.com/docs)
+- [Vue.js Documentation](https://vuejs.org/)
+- [UnoCSS Documentation](https://unocss.dev/)
+- [Pinia Documentation](https://pinia.vuejs.org/)
+- [@nuxtjs/i18n Documentation](https://i18n.nuxtjs.org/)
 - [Vitest Documentation](https://vitest.dev/)
-- [@vue/test-utils Documentation](https://test-utils.vuejs.org/)
+- [@nuxt/test-utils Documentation](https://nuxt.com/docs/getting-started/testing)
+
+## License
+
+Private project.
