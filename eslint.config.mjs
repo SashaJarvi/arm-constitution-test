@@ -1,14 +1,15 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default withNuxt(
-  {
-    rules: {
-      '@stylistic/semi': ['error', 'never'],
-      '@stylistic/quotes': ['error', 'single'],
-      '@stylistic/comma-dangle': ['error', 'never'],
-      '@stylistic/max-len': ['error', { code: 130 }],
-      '@stylistic/eol-last': ['error', 'always'],
-      '@stylistic/linebreak-style': ['error', 'unix']
-    }
+export default withNuxt({
+  rules: {
+    '@stylistic/semi': ['warn', 'never'],
+    '@stylistic/quotes': ['warn', 'single'],
+    '@stylistic/comma-dangle': ['warn', 'never'],
+    '@stylistic/arrow-parens': ['warn', 'as-needed'],
+    '@stylistic/indent': ['warn', 2],
+    '@stylistic/max-len': ['warn', { code: 140 }],
+    '@stylistic/eol-last': ['warn', 'always'],
+    '@stylistic/linebreak-style': ['warn', 'unix'],
+    'vue/comma-dangle': ['warn', 'never']
   }
-)
+})

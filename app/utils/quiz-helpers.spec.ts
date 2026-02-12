@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { formatTime, calculatePercentage, getResultColor } from '~/utils/quiz-helpers'
+import { formatTime, calculatePercentage, getResultColor } from './quiz-helpers'
 
 describe('quiz-helpers', () => {
   describe('formatTime', () => {

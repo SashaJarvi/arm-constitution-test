@@ -22,13 +22,7 @@ export default defineNuxtConfig({
 
   eslint: {
     config: {
-      stylistic: {
-        arrowParens: false,
-        indent: 2,
-        semi: false,
-        quotes: 'single',
-        commaDangle: 'never'
-      }
+      stylistic: true
     }
   },
 

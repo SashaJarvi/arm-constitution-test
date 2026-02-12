@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import BaseButton from '~/components/BaseButton.vue'
+import BaseButton from './BaseButton.vue'
 
 describe('BaseButton', () => {
   it('renders with default props', async () => {

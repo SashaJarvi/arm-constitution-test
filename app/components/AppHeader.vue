@@ -1,7 +1,6 @@
 <template>
   <header
-    class="sticky top-0 z-50 bg-white dark:bg-dark-900 border-b border-gray-200 dark:border-dark-700 transition-colors
-    duration-200"
+    class="sticky top-0 z-50 bg-white dark:bg-dark-900 border-b border-gray-200 dark:border-dark-700 transition-colors duration-200"
   >
     <div class="max-w-6xl mx-auto px-4 md:px-8 py-4">
       <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 md:gap-4">
@@ -21,18 +20,12 @@
 const { t } = useI18n()
 const route = useRoute()
 
+const titleKeys: Record<string, string> = {
+  results: 'results.title'
+}
+
 const pageTitle = computed(() => {
   const routeName = route.name as string
-
-  switch (routeName) {
-    case 'index':
-      return t('landing.title')
-    case 'quiz':
-      return t('landing.title')
-    case 'results':
-      return t('results.title')
-    default:
-      return t('landing.title')
-  }
+  return t(titleKeys[routeName] || 'landing.title')
 })
 </script>

@@ -22,7 +22,7 @@ const props = defineProps<{
 
 const questionsWithResults = computed(() => {
   return props.questions
-    .map((question) => {
+    .map(question => {
       const result = props.getQuestionResult(question.id)
       return result ? { id: question.id, result } : null
     })

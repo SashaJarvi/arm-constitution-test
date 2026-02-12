@@ -10,7 +10,7 @@ export const useQuizResults = (state: QuizState | ReadonlyDeep<QuizState>) => {
     let correctAnswers = 0
     const wrongQuestionIds: string[] = []
 
-    state.questions.forEach((question) => {
+    state.questions.forEach(question => {
       const userAnswerId = state.userAnswers[question.id]
 
       if (userAnswerId) {
