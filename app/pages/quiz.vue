@@ -141,7 +141,7 @@ const handleSubmit = () => {
 }
 
 // Navigation guard
-onBeforeRouteLeave((to) => {
+onBeforeRouteLeave(to => {
   if (quizState.value.isCompleted || to.path === '/results')
     return true
 

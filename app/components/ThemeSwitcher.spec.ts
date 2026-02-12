@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { ref } from 'vue'
-import ThemeSwitcher from '~/components/ThemeSwitcher.vue'
+import ThemeSwitcher from './ThemeSwitcher.vue'
 
 describe('ThemeSwitcher', () => {
   it('renders all three theme options', async () => {
@@ -99,7 +99,7 @@ describe('ThemeSwitcher', () => {
 
     const buttons = wrapper.findAll('button')
     // When unknown is true, no button should have active styling
-    buttons.forEach((button) => {
+    buttons.forEach(button => {
       expect(button.classes()).not.toContain('bg-primary-600')
     })
   })

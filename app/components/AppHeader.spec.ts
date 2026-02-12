@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import AppHeader from '~/components/AppHeader.vue'
+import AppHeader from './AppHeader.vue'
 
 describe('AppHeader', () => {
   const mountOptions = {
