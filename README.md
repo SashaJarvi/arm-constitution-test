@@ -90,19 +90,15 @@ pnpm test:coverage
 
 ### Test Structure
 
-Tests are organized by their runtime requirements and type:
+Tests are co-located with their source files (see [testing conventions](.claude/rules/testing.md)):
 
-- **`test/nuxt/`** - Tests requiring Nuxt runtime (auto-imports, `~/` aliases, composables)
-  - Automatically included in Nuxt app's TypeScript context
-  - Organized by type in subdirectories:
-    - `components/` - Vue component tests
-    - `composables/` - Composable function tests
-    - `utils/` - Utility function tests using Nuxt features
-- **`test/unit/`** - Pure unit tests running in Node (no Nuxt context needed)
-  - Use for testing standalone utilities without Nuxt dependencies
+- **`app/components/*.spec.ts`** - Component tests next to their `.vue` files
+- **`app/utils/*.spec.ts`** - Utility function tests next to their source
+- **`app/composables/*.spec.ts`** - Composable tests next to their source
+- **`test/setup.ts`** - Shared test setup and mocks
 - **`test/e2e/`** - End-to-end tests
 
-All test files follow the naming convention `*.spec.ts` or `*.test.ts`.
+All test files follow the naming convention `*.spec.ts`.
 
 ### Writing Tests
 
@@ -110,7 +106,7 @@ All test files follow the naming convention `*.spec.ts` or `*.test.ts`.
 
 ```typescript
 import { describe, it, expect } from 'vitest'
-import { yourFunction } from '~/utils/your-file'
+import { yourFunction } from './your-file'
 
 describe('your-file', () => {
   it('should do something', () => {
@@ -126,7 +122,7 @@ For components that use Nuxt features, use `mountSuspended` from `@nuxt/test-uti
 ```typescript
 import { describe, it, expect } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import YourComponent from '~/components/YourComponent.vue'
+import YourComponent from './YourComponent.vue'
 
 describe('YourComponent', () => {
   it('renders correctly', async () => {
@@ -174,6 +170,7 @@ import { defineVitestConfig } from '@nuxt/test-utils/config'
 export default defineVitestConfig({
   test: {
     environment: 'nuxt',
+    include: ['app/**/*.spec.ts'],
     setupFiles: ['./test/setup.ts'],
     environmentOptions: {
       nuxt: {
@@ -210,7 +207,7 @@ Configure in `.lintstagedrc.mjs`.
 ```
 arm-constitution-test/
 ├── app/
-│   ├── components/       # Vue components
+│   ├── components/       # Vue components (tests co-located as *.spec.ts)
 │   │   ├── quiz/        # Quiz-specific components
 │   │   └── results/     # Results page components
 │   ├── composables/     # Vue composables
@@ -218,12 +215,9 @@ arm-constitution-test/
 │   ├── pages/           # Application pages (auto-routed)
 │   ├── stores/          # Pinia stores
 │   ├── types/           # TypeScript type definitions
-│   └── utils/           # Utility functions
+│   └── utils/           # Utility functions (tests co-located as *.spec.ts)
 ├── test/
-│   ├── nuxt/           # Nuxt-aware tests
-│   │   ├── components/ # Component tests
-│   │   └── utils/      # Utility tests
-│   └── setup.ts        # Test setup and mocks
+│   └── setup.ts        # Shared test setup and mocks
 └── public/             # Static assets
 ```
 
