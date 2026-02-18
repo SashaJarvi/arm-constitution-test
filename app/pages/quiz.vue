@@ -108,8 +108,10 @@ if (!questionsData.value?.success) {
   })
 }
 
-// Initialize quiz
-quizStore.initializeQuiz(questionsData.value.data)
+// Initialize quiz only on client where localStorage is available
+onMounted(() => {
+  quizStore.initializeQuiz(questionsData.value!.data)
+})
 
 // Current answer
 const currentAnswer = computed(() => {

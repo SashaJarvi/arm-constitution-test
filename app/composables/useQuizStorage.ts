@@ -1,11 +1,11 @@
-import { useLocalStorage } from '@vueuse/core'
+import { StorageSerializers, useLocalStorage } from '@vueuse/core'
 import type { QuizSession, QuizState } from '~/types/quiz'
 
 const STORAGE_KEY = 'quiz-session'
 const STORAGE_VERSION = '1.0.0'
 
 export const useQuizStorage = () => {
-  const savedSession = useLocalStorage<QuizSession | null>(STORAGE_KEY, null)
+  const savedSession = useLocalStorage<QuizSession | null>(STORAGE_KEY, null, { serializer: StorageSerializers.object })
 
   const saveSession = (state: QuizState) => {
     savedSession.value = {
