@@ -26,3 +26,5 @@ logs
 # Testing
 
 app/coverage
+
+.claude/threads
