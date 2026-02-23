@@ -42,7 +42,7 @@ export type QuizState = {
 export type QuizSession = {
   state: QuizState
   lastUpdated: number
-  version: string
+  version: number
 }
 
 // Quiz result type
