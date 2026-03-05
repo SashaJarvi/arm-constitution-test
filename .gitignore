@@ -24,7 +24,7 @@ logs
 !.env.example
 
 # Testing
-
 app/coverage
 
-.claude/threads
+# SonarQube
+.scannerwork

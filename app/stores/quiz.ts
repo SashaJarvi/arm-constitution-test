@@ -205,16 +205,14 @@ export const useQuizStore = defineStore('quiz', () => {
   const togglePause = () => {
     if (state.value.gameDifficulty === DIFFICULTY.HARD) return
 
-    if (!state.value.isPaused) {
+    if (state.value.isPaused && state.value.pauseStartTime !== null) {
+      // Resuming
+      state.value.totalPausedTime += Date.now() - state.value.pauseStartTime
+      state.value.pauseStartTime = null
+    }
+    else if (!state.value.isPaused) {
       // Pausing
       state.value.pauseStartTime = Date.now()
-    }
-    else {
-      // Resuming
-      if (state.value.pauseStartTime !== null) {
-        state.value.totalPausedTime += Date.now() - state.value.pauseStartTime
-        state.value.pauseStartTime = null
-      }
     }
     state.value.isPaused = !state.value.isPaused
     saveSession(state.value)
