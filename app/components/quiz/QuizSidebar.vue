@@ -16,11 +16,13 @@
           'w-11 h-11 rounded-xl font-semibold transition-all duration-150',
           index === currentQuestionIndex
             ? 'bg-primary-600 text-white ring-2 ring-primary-300 shadow-md'
-            : isAnswered(questionId)
-              ? 'bg-primary-200 text-primary-700 hover:bg-primary-400 hover:shadow-sm cursor-pointer'
-              : canNavigateTo(index)
-                ? 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm cursor-pointer'
-                : 'bg-gray-light text-dark-700 cursor-not-allowed opacity-50'
+            : isTimedOut(questionId)
+              ? 'bg-error-200 text-error-700 dark:bg-error-900/30 dark:text-error-400 cursor-pointer'
+              : isAnswered(questionId)
+                ? 'bg-primary-200 text-primary-700 hover:bg-primary-400 hover:shadow-sm cursor-pointer'
+                : canNavigateTo(index)
+                  ? 'bg-gray-light text-dark-700 hover:bg-gray-200 hover:shadow-sm cursor-pointer'
+                  : 'bg-gray-light text-dark-700 cursor-not-allowed opacity-50'
         ]"
         @click="handleNavigate(index)"
       >
@@ -37,6 +39,7 @@ const props = defineProps<{
   currentQuestionIndex: number
   userAnswers: Record<string, string>
   visitedQuestions: readonly string[]
+  timedOutQuestions?: readonly string[]
 }>()
 
 const emit = defineEmits<{
@@ -48,6 +51,10 @@ const { width: screenWidth } = useWindowSize()
 
 const isAnswered = (questionId: string): boolean => {
   return !!props.userAnswers[questionId]
+}
+
+const isTimedOut = (questionId: string): boolean => {
+  return props.timedOutQuestions?.includes(questionId) ?? false
 }
 
 const isVisited = (questionId: string): boolean => {

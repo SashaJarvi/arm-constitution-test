@@ -1,5 +1,4 @@
 import type { Question } from '~/types/quiz'
-import { DIFFICULTY } from '~/types/quiz'
 
 export const questions: Question[] = [
   {
@@ -10,8 +9,7 @@ export const questions: Question[] = [
       { id: '1b', text: 'quiz.questions.q1.answers.b', isCorrect: true },
       { id: '1c', text: 'quiz.questions.q1.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '2',
@@ -21,8 +19,7 @@ export const questions: Question[] = [
       { id: '2b', text: 'quiz.questions.q2.answers.b', isCorrect: false },
       { id: '2c', text: 'quiz.questions.q2.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '3',
@@ -32,8 +29,7 @@ export const questions: Question[] = [
       { id: '3b', text: 'quiz.questions.q3.answers.b', isCorrect: true },
       { id: '3c', text: 'quiz.questions.q3.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '4',
@@ -43,8 +39,7 @@ export const questions: Question[] = [
       { id: '4b', text: 'quiz.questions.q4.answers.b', isCorrect: true },
       { id: '4c', text: 'quiz.questions.q4.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '5',
@@ -54,8 +49,7 @@ export const questions: Question[] = [
       { id: '5b', text: 'quiz.questions.q5.answers.b', isCorrect: false },
       { id: '5c', text: 'quiz.questions.q5.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '6',
@@ -65,8 +59,7 @@ export const questions: Question[] = [
       { id: '6b', text: 'quiz.questions.q6.answers.b', isCorrect: true },
       { id: '6c', text: 'quiz.questions.q6.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '7',
@@ -76,8 +69,7 @@ export const questions: Question[] = [
       { id: '7b', text: 'quiz.questions.q7.answers.b', isCorrect: true },
       { id: '7c', text: 'quiz.questions.q7.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '8',
@@ -87,8 +79,7 @@ export const questions: Question[] = [
       { id: '8b', text: 'quiz.questions.q8.answers.b', isCorrect: true },
       { id: '8c', text: 'quiz.questions.q8.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '9',
@@ -98,8 +89,7 @@ export const questions: Question[] = [
       { id: '9b', text: 'quiz.questions.q9.answers.b', isCorrect: false },
       { id: '9c', text: 'quiz.questions.q9.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '10',
@@ -109,8 +99,7 @@ export const questions: Question[] = [
       { id: '10b', text: 'quiz.questions.q10.answers.b', isCorrect: false },
       { id: '10c', text: 'quiz.questions.q10.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.HARD
+    category: 'constitution'
   },
   {
     id: '11',
@@ -120,8 +109,7 @@ export const questions: Question[] = [
       { id: '11b', text: 'quiz.questions.q11.answers.b', isCorrect: true },
       { id: '11c', text: 'quiz.questions.q11.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.HARD
+    category: 'constitution'
   },
   {
     id: '12',
@@ -131,8 +119,7 @@ export const questions: Question[] = [
       { id: '12b', text: 'quiz.questions.q12.answers.b', isCorrect: false },
       { id: '12c', text: 'quiz.questions.q12.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '13',
@@ -142,8 +129,7 @@ export const questions: Question[] = [
       { id: '13b', text: 'quiz.questions.q13.answers.b', isCorrect: false },
       { id: '13c', text: 'quiz.questions.q13.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '14',
@@ -153,8 +139,7 @@ export const questions: Question[] = [
       { id: '14b', text: 'quiz.questions.q14.answers.b', isCorrect: false },
       { id: '14c', text: 'quiz.questions.q14.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '15',
@@ -164,8 +149,7 @@ export const questions: Question[] = [
       { id: '15b', text: 'quiz.questions.q15.answers.b', isCorrect: false },
       { id: '15c', text: 'quiz.questions.q15.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '16',
@@ -175,8 +159,7 @@ export const questions: Question[] = [
       { id: '16b', text: 'quiz.questions.q16.answers.b', isCorrect: true },
       { id: '16c', text: 'quiz.questions.q16.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '17',
@@ -186,8 +169,7 @@ export const questions: Question[] = [
       { id: '17b', text: 'quiz.questions.q17.answers.b', isCorrect: true },
       { id: '17c', text: 'quiz.questions.q17.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '18',
@@ -197,8 +179,7 @@ export const questions: Question[] = [
       { id: '18b', text: 'quiz.questions.q18.answers.b', isCorrect: false },
       { id: '18c', text: 'quiz.questions.q18.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '19',
@@ -208,8 +189,7 @@ export const questions: Question[] = [
       { id: '19b', text: 'quiz.questions.q19.answers.b', isCorrect: false },
       { id: '19c', text: 'quiz.questions.q19.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '20',
@@ -219,8 +199,7 @@ export const questions: Question[] = [
       { id: '20b', text: 'quiz.questions.q20.answers.b', isCorrect: true },
       { id: '20c', text: 'quiz.questions.q20.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '21',
@@ -230,8 +209,7 @@ export const questions: Question[] = [
       { id: '21b', text: 'quiz.questions.q21.answers.b', isCorrect: false },
       { id: '21c', text: 'quiz.questions.q21.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '22',
@@ -241,8 +219,7 @@ export const questions: Question[] = [
       { id: '22b', text: 'quiz.questions.q22.answers.b', isCorrect: true },
       { id: '22c', text: 'quiz.questions.q22.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '23',
@@ -252,8 +229,7 @@ export const questions: Question[] = [
       { id: '23b', text: 'quiz.questions.q23.answers.b', isCorrect: true },
       { id: '23c', text: 'quiz.questions.q23.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '24',
@@ -263,8 +239,7 @@ export const questions: Question[] = [
       { id: '24b', text: 'quiz.questions.q24.answers.b', isCorrect: true },
       { id: '24c', text: 'quiz.questions.q24.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.EASY
+    category: 'constitution'
   },
   {
     id: '25',
@@ -274,8 +249,7 @@ export const questions: Question[] = [
       { id: '25b', text: 'quiz.questions.q25.answers.b', isCorrect: true },
       { id: '25c', text: 'quiz.questions.q25.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '26',
@@ -285,8 +259,7 @@ export const questions: Question[] = [
       { id: '26b', text: 'quiz.questions.q26.answers.b', isCorrect: false },
       { id: '26c', text: 'quiz.questions.q26.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '27',
@@ -296,8 +269,7 @@ export const questions: Question[] = [
       { id: '27b', text: 'quiz.questions.q27.answers.b', isCorrect: false },
       { id: '27c', text: 'quiz.questions.q27.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '28',
@@ -307,8 +279,7 @@ export const questions: Question[] = [
       { id: '28b', text: 'quiz.questions.q28.answers.b', isCorrect: false },
       { id: '28c', text: 'quiz.questions.q28.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '29',
@@ -318,8 +289,7 @@ export const questions: Question[] = [
       { id: '29b', text: 'quiz.questions.q29.answers.b', isCorrect: false },
       { id: '29c', text: 'quiz.questions.q29.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '30',
@@ -329,8 +299,7 @@ export const questions: Question[] = [
       { id: '30b', text: 'quiz.questions.q30.answers.b', isCorrect: false },
       { id: '30c', text: 'quiz.questions.q30.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '31',
@@ -340,8 +309,7 @@ export const questions: Question[] = [
       { id: '31b', text: 'quiz.questions.q31.answers.b', isCorrect: true },
       { id: '31c', text: 'quiz.questions.q31.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   },
   {
     id: '32',
@@ -351,8 +319,7 @@ export const questions: Question[] = [
       { id: '32b', text: 'quiz.questions.q32.answers.b', isCorrect: false },
       { id: '32c', text: 'quiz.questions.q32.answers.c', isCorrect: false }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.HARD
+    category: 'constitution'
   },
   {
     id: '33',
@@ -362,7 +329,6 @@ export const questions: Question[] = [
       { id: '33b', text: 'quiz.questions.q33.answers.b', isCorrect: false },
       { id: '33c', text: 'quiz.questions.q33.answers.c', isCorrect: true }
     ],
-    category: 'constitution',
-    difficulty: DIFFICULTY.MEDIUM
+    category: 'constitution'
   }
 ]

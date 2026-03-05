@@ -2,11 +2,17 @@ import { StorageSerializers, useLocalStorage } from '@vueuse/core'
 import type { QuizSession, QuizState } from '~/types/quiz'
 
 const STORAGE_KEY = 'quiz-session'
-const STORAGE_VERSION = 1
+const STORAGE_VERSION = 2
 
 const migrations: Record<number, (state: QuizState) => QuizState> = {
-  // Example for future use:
-  // 1: (state) => ({ ...state, newField: defaultValue }),
+  1: state => ({
+    ...state,
+    gameDifficulty: 'easy',
+    answerOrders: {},
+    timedOutQuestions: [],
+    questionTimers: {},
+    questionStartTime: null
+  })
 }
 
 export const useQuizStorage = () => {

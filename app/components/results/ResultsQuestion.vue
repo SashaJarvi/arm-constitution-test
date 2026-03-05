@@ -17,8 +17,18 @@
     </div>
 
     <div class="space-y-3 ml-11">
+      <!-- Timed out indicator -->
       <div
-        v-if="userAnswer"
+        v-if="isTimedOut"
+        class="p-3 rounded-lg border-2 border-warning-300 dark:border-warning-700 bg-warning-50 dark:bg-warning-900/20"
+      >
+        <div class="text-warning-700 dark:text-warning-400 font-medium">
+          {{ t('results.timedOut') }}
+        </div>
+      </div>
+
+      <div
+        v-else-if="userAnswer"
         :class="[
           'p-3 rounded-lg border-2',
           isCorrect
@@ -57,6 +67,7 @@ defineProps<{
   userAnswer: Answer | undefined
   correctAnswer: Answer
   isCorrect: boolean
+  isTimedOut?: boolean
 }>()
 
 const { t } = useI18n()

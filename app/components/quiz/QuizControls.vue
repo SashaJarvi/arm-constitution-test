@@ -8,6 +8,7 @@
     </button>
 
     <button
+      v-if="!isHardMode"
       :class="[
         'px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-100 ease-out',
         'cursor-pointer hover:scale-105 active:scale-100',
@@ -34,6 +35,7 @@
 defineProps<{
   isPaused: boolean
   canSubmit: boolean
+  isHardMode?: boolean
 }>()
 
 const emit = defineEmits<{

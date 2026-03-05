@@ -56,7 +56,8 @@ export const useQuizResults = (state: QuizState | ReadonlyDeep<QuizState>) => {
       userAnswer: userAnswer as Answer | undefined,
       correctAnswer: correctAnswer as Answer,
       isCorrect: userAnswer?.isCorrect || false,
-      isAnswered: !!userAnswerId
+      isAnswered: !!userAnswerId,
+      isTimedOut: state.timedOutQuestions?.includes(questionId) ?? false
     }
   }
 
