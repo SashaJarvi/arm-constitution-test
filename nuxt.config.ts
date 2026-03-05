@@ -28,6 +28,7 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: 'ru',
+    langDir: '../i18n/locales',
     locales: [
       { code: 'hy', name: 'Հայերեն', file: 'hy.json' },
       { code: 'ru', name: 'Русский', file: 'ru.json' }
