@@ -26,11 +26,11 @@ describe('quiz-helpers', () => {
 
   describe('calculatePercentage', () => {
     it.each([
-      { correct: 5, total: 10, decimals: undefined, expected: 50.0 },
-      { correct: 8, total: 10, decimals: undefined, expected: 80.0 },
-      { correct: 3, total: 10, decimals: undefined, expected: 30.0 },
-      { correct: 10, total: 10, decimals: undefined, expected: 100.0 },
-      { correct: 33, total: 33, decimals: undefined, expected: 100.0 }
+      { correct: 5, total: 10, decimals: undefined, expected: 50 },
+      { correct: 8, total: 10, decimals: undefined, expected: 80 },
+      { correct: 3, total: 10, decimals: undefined, expected: 30 },
+      { correct: 10, total: 10, decimals: undefined, expected: 100 },
+      { correct: 33, total: 33, decimals: undefined, expected: 100 }
     ])('calculates $correct/$total as $expected%', ({ correct, total, decimals, expected }) => {
       expect(calculatePercentage(correct, total, decimals)).toBe(expected)
     })
@@ -53,7 +53,7 @@ describe('quiz-helpers', () => {
       { percentage: 80, expected: 'success' },
       { percentage: 90, expected: 'success' },
       { percentage: 100, expected: 'success' },
-      { percentage: 80.0, expected: 'success' }
+      { percentage: 80, expected: 'success' }
     ])('returns "$expected" for $percentage%', ({ percentage, expected }) => {
       expect(getResultColor(percentage)).toBe(expected)
     })
@@ -62,8 +62,7 @@ describe('quiz-helpers', () => {
       { percentage: 60, expected: 'warning' },
       { percentage: 70, expected: 'warning' },
       { percentage: 79, expected: 'warning' },
-      { percentage: 79.9, expected: 'warning' },
-      { percentage: 60.0, expected: 'warning' }
+      { percentage: 79.9, expected: 'warning' }
     ])('returns "$expected" for $percentage%', ({ percentage, expected }) => {
       expect(getResultColor(percentage)).toBe(expected)
     })
