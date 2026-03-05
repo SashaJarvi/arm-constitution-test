@@ -12,6 +12,11 @@ export default defineVitestConfig({
           indexedDb: true
         }
       }
+    },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'clover'],
+      reportsDirectory: './coverage'
     }
   }
 })
