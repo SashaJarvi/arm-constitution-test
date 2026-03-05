@@ -39,7 +39,7 @@ If any of these fail, fix the errors and re-run until all three pass.
 - `app/composables/` — `useQuizStorage` (localStorage persistence with migration system), `useQuizResults` (score calculations), `useQuizTimer` (elapsed time with pause support)
 - `app/components/quiz/` — Quiz UI components; `app/components/results/` — Results page components
 - `app/types/quiz.ts` — All TypeScript types (Question, Answer, QuizState, QuizResult)
-- `app/locales/{ru,hy}.json` — Translation files containing both UI strings and quiz content
+- `i18n/locales/{ru,hy}.json` — Translation files containing both UI strings and quiz content
 - `server/api/questions.get.ts` — API endpoint returning questions from `server/data/questions.ts`
 
 **Key patterns:**
