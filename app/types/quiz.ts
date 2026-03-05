@@ -20,8 +20,10 @@ export type Question = {
   text: string
   answers: Answer[]
   category?: string
-  difficulty?: Difficulty
 }
+
+// Per-question time limit in seconds for hard mode
+export const QUESTION_TIME_LIMIT = 120
 
 // Quiz state type
 export type QuizState = {
@@ -36,6 +38,11 @@ export type QuizState = {
   isPaused: boolean
   isCompleted: boolean
   questionOrder: string[] // Randomized question IDs
+  gameDifficulty: Difficulty // Game difficulty mode
+  answerOrders: Record<string, string[]> // questionId -> shuffled answer IDs (empty for easy)
+  timedOutQuestions: string[] // Question IDs that timed out (hard mode)
+  questionTimers: Record<string, number> // questionId -> deadline timestamp in ms (hard mode)
+  questionStartTime: number | null // Timestamp when current question started (hard mode)
 }
 
 // Quiz session for localStorage
@@ -63,4 +70,6 @@ export type QuestionResult = {
   correctAnswer: Answer
   isCorrect: boolean
   isAnswered: boolean
+  isHardMode?: boolean
+  isTimedOut?: boolean
 }

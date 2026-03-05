@@ -7,20 +7,31 @@
       {{ getTranslatedText(question.text) }}
     </h2>
     <QuizAnswers
-      :answers="question.answers"
+      :answers="orderedAnswers"
       :selected-answer-id="selectedAnswerId"
+      :disabled="disabled"
       @select="handleSelect"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Question } from '~/types/quiz'
+import type { Answer, Question } from '~/types/quiz'
 
-defineProps<{
+const props = defineProps<{
   question: Question | undefined
   selectedAnswerId?: string
+  answerOrder?: readonly string[]
+  disabled?: boolean
 }>()
+
+const orderedAnswers = computed<Answer[]>(() => {
+  if (!props.question) return []
+  if (!props.answerOrder?.length) return props.question.answers
+  return props.answerOrder
+    .map(id => props.question!.answers.find(a => a.id === id))
+    .filter((a): a is Answer => !!a)
+})
 
 const emit = defineEmits<{
   select: [answerId: string]

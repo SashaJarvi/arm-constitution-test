@@ -4,11 +4,16 @@
       v-for="answer in answers"
       :key="answer.id"
       :class="[
-        'flex items-center gap-3 p-3 md:p-4 border-2 rounded-2xl cursor-pointer transition-all duration-150',
+        'flex items-center gap-3 p-3 md:p-4 border-2 rounded-2xl transition-all duration-150',
+        disabled
+          ? 'cursor-not-allowed opacity-60'
+          : 'cursor-pointer',
         selectedAnswerId === answer.id
           ? 'border-primary-600 bg-primary-50 dark:bg-primary-900/20 shadow-md'
-          : 'border-gray-light-border dark:border-dark-600 hover:border-primary-400 '
-            + 'hover:bg-gray-50 dark:hover:bg-dark-700 hover:shadow-sm'
+          : disabled
+            ? 'border-gray-light-border dark:border-dark-600'
+            : 'border-gray-light-border dark:border-dark-600 hover:border-primary-400 '
+              + 'hover:bg-gray-50 dark:hover:bg-dark-700 hover:shadow-sm'
       ]"
     >
       <input
@@ -16,6 +21,7 @@
         :name="radioName"
         :value="answer.id"
         :checked="selectedAnswerId === answer.id"
+        :disabled="disabled"
         class="input-radio"
         @change="handleSelect(answer.id)"
       >
@@ -27,9 +33,10 @@
 <script setup lang="ts">
 import type { Answer } from '~/types/quiz'
 
-defineProps<{
+const props = defineProps<{
   answers: Answer[]
   selectedAnswerId?: string
+  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -47,6 +54,7 @@ const getTranslatedText = (text: string): string => {
 }
 
 const handleSelect = (answerId: string) => {
-  emit('select', answerId)
+  if (!props.disabled)
+    emit('select', answerId)
 }
 </script>

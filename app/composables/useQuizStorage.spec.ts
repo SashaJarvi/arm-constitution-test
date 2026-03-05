@@ -21,6 +21,11 @@ const createMockState = (overrides: Partial<QuizState> = {}): QuizState => ({
   isPaused: false,
   isCompleted: false,
   questionOrder: [],
+  gameDifficulty: 'easy',
+  answerOrders: {},
+  timedOutQuestions: [],
+  questionTimers: {},
+  questionStartTime: null,
   ...overrides
 })
 
@@ -41,7 +46,7 @@ describe('useQuizStorage', () => {
 
       expect(mockStorage.value).not.toBeNull()
       expect(mockStorage.value!.state).toEqual(state)
-      expect(mockStorage.value!.version).toBe(1)
+      expect(mockStorage.value!.version).toBe(2)
       expect(mockStorage.value!.lastUpdated).toBeTypeOf('number')
     })
 
@@ -67,7 +72,7 @@ describe('useQuizStorage', () => {
 
     it('restores session with matching version', () => {
       const state = createMockState({ currentQuestionIndex: 5 })
-      mockStorage.value = { state, lastUpdated: Date.now(), version: 1 }
+      mockStorage.value = { state, lastUpdated: Date.now(), version: 2 }
 
       const restored = storage.restoreSession()
 
@@ -110,7 +115,7 @@ describe('useQuizStorage', () => {
   describe('clearSession', () => {
     it('clears stored session', () => {
       const state = createMockState()
-      mockStorage.value = { state, lastUpdated: Date.now(), version: 1 }
+      mockStorage.value = { state, lastUpdated: Date.now(), version: 2 }
 
       storage.clearSession()
 
@@ -124,7 +129,7 @@ describe('useQuizStorage', () => {
     })
 
     it('returns true when session exists', () => {
-      mockStorage.value = { state: createMockState(), lastUpdated: Date.now(), version: 1 }
+      mockStorage.value = { state: createMockState(), lastUpdated: Date.now(), version: 2 }
 
       expect(storage.hasSession.value).toBe(true)
     })

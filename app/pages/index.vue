@@ -6,7 +6,16 @@
           {{ t('landing.description') }}
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <!-- Difficulty selection (shown when starting a new quiz) -->
+        <div v-if="isSelectingDifficulty">
+          <DifficultySelector @select="handleDifficultySelect" />
+        </div>
+
+        <!-- Default buttons -->
+        <div
+          v-else
+          class="flex flex-col sm:flex-row gap-4 justify-center"
+        >
           <BaseButton
             v-if="hasExistingSession"
             variant="primary"
@@ -28,17 +37,24 @@
 </template>
 
 <script setup lang="ts">
+import type { Difficulty } from '~/types/quiz'
+
 const { t } = useI18n()
 const { hasSession, clearSession } = useQuizStorage()
 
 const hasExistingSession = computed(() => hasSession.value)
+const isSelectingDifficulty = ref(false)
 
 const handleContinueQuiz = () => {
   navigateTo('/quiz')
 }
 
 const handleStartNewQuiz = () => {
+  isSelectingDifficulty.value = true
+}
+
+const handleDifficultySelect = (difficulty: Difficulty) => {
   clearSession()
-  navigateTo('/quiz')
+  navigateTo(`/quiz?difficulty=${difficulty}`)
 }
 </script>

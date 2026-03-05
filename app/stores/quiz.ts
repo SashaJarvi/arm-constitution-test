@@ -1,24 +1,32 @@
 import { defineStore } from 'pinia'
-import type { Question, QuizState } from '~/types/quiz'
+import type { Difficulty, Question, QuizState } from '~/types/quiz'
+import { DIFFICULTY, QUESTION_TIME_LIMIT } from '~/types/quiz'
 import { shuffleArray } from '~/utils/shuffle'
+
+const DEFAULT_STATE: QuizState = {
+  questions: [],
+  currentQuestionIndex: 0,
+  userAnswers: {},
+  visitedQuestions: [],
+  startTime: Date.now(),
+  timeSpent: 0,
+  totalPausedTime: 0,
+  pauseStartTime: null,
+  isPaused: false,
+  isCompleted: false,
+  questionOrder: [],
+  gameDifficulty: DIFFICULTY.EASY,
+  answerOrders: {},
+  timedOutQuestions: [],
+  questionTimers: {},
+  questionStartTime: null
+}
 
 export const useQuizStore = defineStore('quiz', () => {
   const { saveSession, restoreSession, clearSession } = useQuizStorage()
 
   // State
-  const state = ref<QuizState>({
-    questions: [],
-    currentQuestionIndex: 0,
-    userAnswers: {},
-    visitedQuestions: [],
-    startTime: Date.now(),
-    timeSpent: 0,
-    totalPausedTime: 0,
-    pauseStartTime: null,
-    isPaused: false,
-    isCompleted: false,
-    questionOrder: []
-  })
+  const state = ref<QuizState>({ ...DEFAULT_STATE })
 
   // Getters
   const currentQuestion = computed(() => {
@@ -42,14 +50,38 @@ export const useQuizStore = defineStore('quiz', () => {
       state.value.currentQuestionIndex === state.value.questions.length - 1
   )
 
-  const canSubmit = computed(
-    () =>
-      Object.keys(state.value.userAnswers).length
-      === state.value.questions.length
+  const isHardMode = computed(
+    () => state.value.gameDifficulty === DIFFICULTY.HARD
   )
 
+  const isCurrentQuestionTimedOut = computed(() => {
+    if (!currentQuestion.value) return false
+    return state.value.timedOutQuestions.includes(currentQuestion.value.id)
+  })
+
+  const canSubmit = computed(() => {
+    const answered = new Set(Object.keys(state.value.userAnswers))
+    const timedOut = new Set(state.value.timedOutQuestions)
+    const resolved = new Set([...answered, ...timedOut])
+    return resolved.size >= state.value.questions.length
+  })
+
+  // Helpers
+  const generateAnswerOrders = (questions: Question[]): Record<string, string[]> => {
+    const orders: Record<string, string[]> = {}
+    questions.forEach(q => {
+      orders[q.id] = shuffleArray(q.answers.map(a => a.id))
+    })
+    return orders
+  }
+
+  const updateQuestionStartTime = () => {
+    if (isHardMode.value)
+      state.value.questionStartTime = Date.now()
+  }
+
   // Actions
-  const initializeQuiz = (questions: Question[]) => {
+  const initializeQuiz = (questions: Question[], gameDifficulty: Difficulty = DIFFICULTY.EASY) => {
     const restored = restoreSession()
 
     if (restored) {
@@ -57,18 +89,28 @@ export const useQuizStore = defineStore('quiz', () => {
     }
     else {
       const questionOrder = shuffleArray(questions.map(q => q.id))
+      const shouldShuffleAnswers = gameDifficulty !== DIFFICULTY.EASY
+      const answerOrders = shouldShuffleAnswers ? generateAnswerOrders(questions) : {}
+
       state.value = {
         questions,
         currentQuestionIndex: 0,
         userAnswers: {},
-        visitedQuestions: [questionOrder[0] as string], // Mark the first question as visited
+        visitedQuestions: [questionOrder[0] as string],
         startTime: Date.now(),
         timeSpent: 0,
         totalPausedTime: 0,
         pauseStartTime: null,
         isPaused: false,
         isCompleted: false,
-        questionOrder
+        questionOrder,
+        gameDifficulty,
+        answerOrders,
+        timedOutQuestions: [],
+        questionTimers: gameDifficulty === DIFFICULTY.HARD
+          ? { [questionOrder[0] as string]: Date.now() + QUESTION_TIME_LIMIT * 1000 }
+          : {},
+        questionStartTime: gameDifficulty === DIFFICULTY.HARD ? Date.now() : null
       }
       saveSession(state.value)
     }
@@ -90,6 +132,7 @@ export const useQuizStore = defineStore('quiz', () => {
     if (index >= 0 && index < state.value.questions.length) {
       state.value.currentQuestionIndex = index
       markQuestionAsVisited(index)
+      updateQuestionStartTime()
       saveSession(state.value)
     }
   }
@@ -98,6 +141,7 @@ export const useQuizStore = defineStore('quiz', () => {
     if (state.value.currentQuestionIndex < state.value.questions.length - 1) {
       state.value.currentQuestionIndex++
       markQuestionAsVisited(state.value.currentQuestionIndex)
+      updateQuestionStartTime()
       saveSession(state.value)
     }
   }
@@ -106,11 +150,61 @@ export const useQuizStore = defineStore('quiz', () => {
     if (state.value.currentQuestionIndex > 0) {
       state.value.currentQuestionIndex--
       markQuestionAsVisited(state.value.currentQuestionIndex)
+      updateQuestionStartTime()
       saveSession(state.value)
     }
   }
 
+  const initQuestionDeadline = (questionId: string) => {
+    if (state.value.questionTimers[questionId] === undefined) {
+      state.value.questionTimers[questionId] = Date.now() + QUESTION_TIME_LIMIT * 1000
+      saveSession(state.value)
+    }
+  }
+
+  const getQuestionDeadline = (questionId: string): number | undefined => {
+    return state.value.questionTimers[questionId]
+  }
+
+  const getRemainingSeconds = (questionId: string): number => {
+    const deadline = state.value.questionTimers[questionId]
+    if (deadline === undefined) return QUESTION_TIME_LIMIT
+    return Math.max(0, Math.floor((deadline - Date.now()) / 1000))
+  }
+
+  const checkExpiredDeadlines = () => {
+    let changed = false
+    for (const [questionId, deadline] of Object.entries(state.value.questionTimers)) {
+      if (
+        deadline <= Date.now()
+        && !state.value.timedOutQuestions.includes(questionId)
+        && !state.value.userAnswers[questionId]
+      ) {
+        state.value.timedOutQuestions.push(questionId)
+        changed = true
+      }
+    }
+    if (changed) saveSession(state.value)
+    return changed
+  }
+
+  const timeoutQuestion = (questionId: string) => {
+    if (!state.value.timedOutQuestions.includes(questionId))
+      state.value.timedOutQuestions.push(questionId)
+
+    // Auto-advance to next question if not on the last one
+    if (state.value.currentQuestionIndex < state.value.questions.length - 1) {
+      state.value.currentQuestionIndex++
+      markQuestionAsVisited(state.value.currentQuestionIndex)
+      updateQuestionStartTime()
+    }
+
+    saveSession(state.value)
+  }
+
   const togglePause = () => {
+    if (state.value.gameDifficulty === DIFFICULTY.HARD) return
+
     if (!state.value.isPaused) {
       // Pausing
       state.value.pauseStartTime = Date.now()
@@ -139,19 +233,7 @@ export const useQuizStore = defineStore('quiz', () => {
 
   const resetQuiz = () => {
     clearSession()
-    state.value = {
-      questions: [],
-      currentQuestionIndex: 0,
-      userAnswers: {},
-      visitedQuestions: [],
-      startTime: Date.now(),
-      timeSpent: 0,
-      totalPausedTime: 0,
-      pauseStartTime: null,
-      isPaused: false,
-      isCompleted: false,
-      questionOrder: []
-    }
+    state.value = { ...DEFAULT_STATE, startTime: Date.now() }
   }
 
   return {
@@ -163,6 +245,8 @@ export const useQuizStore = defineStore('quiz', () => {
     progress,
     isFirstQuestion,
     isLastQuestion,
+    isHardMode,
+    isCurrentQuestionTimedOut,
     canSubmit,
 
     // Actions
@@ -171,6 +255,11 @@ export const useQuizStore = defineStore('quiz', () => {
     goToQuestion,
     nextQuestion,
     previousQuestion,
+    initQuestionDeadline,
+    getQuestionDeadline,
+    getRemainingSeconds,
+    checkExpiredDeadlines,
+    timeoutQuestion,
     togglePause,
     submitQuiz,
     resetQuiz

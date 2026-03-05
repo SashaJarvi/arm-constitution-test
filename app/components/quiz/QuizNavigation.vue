@@ -10,7 +10,7 @@
 
     <BaseButton
       variant="primary"
-      :disabled="!isAnswered && !isLastQuestion"
+      :disabled="!isAnswered && !isLastQuestion && !isHardMode && !isTimedOut"
       @click="emit('next')"
     >
       {{ isLastQuestion ? t('quiz.submit') : t('quiz.next') }}
@@ -23,6 +23,8 @@ defineProps<{
   isFirstQuestion: boolean
   isLastQuestion: boolean
   isAnswered: boolean
+  isHardMode?: boolean
+  isTimedOut?: boolean
 }>()
 
 const emit = defineEmits<{
