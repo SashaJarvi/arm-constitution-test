@@ -83,7 +83,6 @@
                 :is-first-question="isFirstQuestion"
                 :is-last-question="isLastQuestion"
                 :is-answered="!!currentAnswer"
-                :is-hard-mode="isHardMode"
                 :is-timed-out="isCurrentQuestionTimedOut"
                 @previous="handlePrevious"
                 @next="handleNext"
